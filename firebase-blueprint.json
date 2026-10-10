@@ -1,0 +1,220 @@
+{
+  "entities": {
+    "Room": {
+      "title": "Room",
+      "description": "Hostel room or dorm dormitory",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "slug": { "type": "string", "maxLength": 100 },
+        "type": { "type": "string", "enum": ["dorm", "private", "family"] },
+        "bedsCount": { "type": "number" },
+        "capacity": { "type": "number" },
+        "priceUsd": { "type": "number" },
+        "priceUzs": { "type": "number" },
+        "description": { "type": "string", "maxLength": 1000 },
+        "shortDescription": { "type": "string", "maxLength": 300 },
+        "amenities": { "type": "array" },
+        "images": { "type": "array" },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "type", "bedsCount", "capacity", "priceUsd", "priceUzs", "isActive"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Guest reservation record",
+      "type": "object",
+      "properties": {
+        "roomTypeId": { "type": "string", "maxLength": 128 },
+        "roomName": { "type": "string", "maxLength": 100 },
+        "guestName": { "type": "string", "maxLength": 120 },
+        "guestEmail": { "type": "string", "maxLength": 150 },
+        "guestPhone": { "type": "string", "maxLength": 40 },
+        "passportNumber": { "type": "string", "maxLength": 50 },
+        "checkInDate": { "type": "string", "maxLength": 30 },
+        "checkOutDate": { "type": "string", "maxLength": 30 },
+        "nights": { "type": "number" },
+        "guestsCount": { "type": "number" },
+        "totalPriceUsd": { "type": "number" },
+        "totalPriceUzs": { "type": "number" },
+        "currency": { "type": "string", "enum": ["USD", "UZS"] },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "checked_in", "checked_out", "cancelled"] },
+        "paymentStatus": { "type": "string", "enum": ["unpaid", "partial", "paid"] },
+        "paymentMethod": { "type": "string", "maxLength": 50 },
+        "specialRequests": { "type": "string", "maxLength": 500 },
+        "source": { "type": "string", "enum": ["website", "walk_in", "booking.com", "phone"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["roomTypeId", "guestName", "guestEmail", "guestPhone", "checkInDate", "checkOutDate", "nights", "guestsCount", "totalPriceUsd", "totalPriceUzs", "status"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Guest testimonial or review",
+      "type": "object",
+      "properties": {
+        "guestName": { "type": "string", "maxLength": 100 },
+        "guestCountry": { "type": "string", "maxLength": 60 },
+        "rating": { "type": "number" },
+        "comment": { "type": "string", "maxLength": 1000 },
+        "roomType": { "type": "string", "maxLength": 100 },
+        "isApproved": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["guestName", "rating", "comment", "isApproved"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Contact inquiry message from public site",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 120 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "subject": { "type": "string", "maxLength": 150 },
+        "message": { "type": "string", "maxLength": 2000 },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "email", "message", "isRead"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Hostel website and operations settings",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 250 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "email": { "type": "string", "maxLength": 100 },
+        "checkInTime": { "type": "string", "maxLength": 20 },
+        "checkOutTime": { "type": "string", "maxLength": 20 },
+        "uzsRate": { "type": "number" },
+        "heroHeadline": { "type": "string", "maxLength": 150 },
+        "heroSubtext": { "type": "string", "maxLength": 300 },
+        "aboutStory": { "type": "string", "maxLength": 2000 },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Payment transactions record",
+      "type": "object",
+      "properties": {
+        "bookingId": { "type": "string", "maxLength": 128 },
+        "guestName": { "type": "string", "maxLength": 120 },
+        "amountUsd": { "type": "number" },
+        "amountUzs": { "type": "number" },
+        "method": { "type": "string", "enum": ["cash_usd", "cash_uzs", "card", "transfer"] },
+        "type": { "type": "string", "enum": ["income", "deposit", "refund"] },
+        "date": { "type": "string", "maxLength": 30 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["amountUsd", "amountUzs", "method", "type", "date"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Hostel operational expense",
+      "type": "object",
+      "properties": {
+        "category": { "type": "string", "maxLength": 50 },
+        "title": { "type": "string", "maxLength": 150 },
+        "amountUsd": { "type": "number" },
+        "amountUzs": { "type": "number" },
+        "date": { "type": "string", "maxLength": 30 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["category", "title", "amountUsd", "amountUzs", "date"]
+    },
+    "GalleryItem": {
+      "title": "GalleryItem",
+      "description": "Hostel photo gallery asset",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 150 },
+        "category": { "type": "string", "enum": ["rooms", "common", "tashkent"] },
+        "imageUrl": { "type": "string", "maxLength": 500 },
+        "caption": { "type": "string", "maxLength": 300 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "category", "imageUrl"]
+    },
+    "StaffUser": {
+      "title": "StaffUser",
+      "description": "Staff or owner profile with role",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 120 },
+        "role": { "type": "string", "enum": ["owner", "staff"] },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "name", "email", "role", "isActive"]
+    },
+    "ActivityLog": {
+      "title": "ActivityLog",
+      "description": "Audit and operational activity log",
+      "type": "object",
+      "properties": {
+        "action": { "type": "string", "maxLength": 100 },
+        "actorEmail": { "type": "string", "maxLength": 120 },
+        "actorRole": { "type": "string", "maxLength": 30 },
+        "details": { "type": "string", "maxLength": 500 },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["action", "actorEmail", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/rooms/{roomId}": {
+      "schema": { "$ref": "Room" },
+      "description": "Hostel room types, bed capacities, amenities, and live pricing"
+    },
+    "/bookings/{bookingId}": {
+      "schema": { "$ref": "Booking" },
+      "description": "Reservations created by guests or staff"
+    },
+    "/reviews/{reviewId}": {
+      "schema": { "$ref": "Review" },
+      "description": "Guest ratings and reviews (approved reviews displayed publicly)"
+    },
+    "/messages/{messageId}": {
+      "schema": { "$ref": "Message" },
+      "description": "Guest inquiries from contact form"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "Settings" },
+      "description": "Hostel general configuration, content texts, and exchange rates"
+    },
+    "/payments/{paymentId}": {
+      "schema": { "$ref": "Payment" },
+      "description": "Payment transactions for bookings"
+    },
+    "/expenses/{expenseId}": {
+      "schema": { "$ref": "Expense" },
+      "description": "Operational expenses incurred by the hostel"
+    },
+    "/gallery/{galleryId}": {
+      "schema": { "$ref": "GalleryItem" },
+      "description": "Photo gallery items showcasing rooms, lounge, and Tashkent"
+    },
+    "/staff/{staffId}": {
+      "schema": { "$ref": "StaffUser" },
+      "description": "Authorized staff and owner accounts"
+    },
+    "/activityLogs/{logId}": {
+      "schema": { "$ref": "ActivityLog" },
+      "description": "System and administrative action audit trail"
+    },
+    "/admins/{adminUid}": {
+      "schema": { "type": "object" },
+      "description": "Admin authorization registry for ABAC verification"
+    }
+  }
+}

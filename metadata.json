@@ -1,0 +1,6 @@
+{
+  "name": "Ummon Hostel - Boutique Hostel in Tashkent",
+  "description": "Boutique hostel in Tashkent, Uzbekistan offering modern dorms, private rooms, Silk Road hospitality, real-time booking, and comprehensive management dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

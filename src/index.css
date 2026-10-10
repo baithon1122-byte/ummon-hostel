@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-teal-dark: #071e20;
+    --color-teal-base: #0B2B2E;
+    --color-teal-light: #164246;
+    --color-saffron: #F2A93B;
+    --color-turquoise: #2EC4B6;
+    --color-sand: #F6EFE4;
+    --color-sand-dark: #E8DCB8;
+    --color-terracotta: #C8553D;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    background-color: #071e20;
+    color: #f1f5f9;
+  }
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Glassmorphism utility */
+.glass-card {
+  background: rgba(11, 43, 46, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(242, 169, 59, 0.15);
+}
+
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-nav {
+  background: rgba(7, 30, 32, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(242, 169, 59, 0.15);
+}
+
+/* Central Asian geometric subtle pattern */
+.bg-silk-pattern {
+  background-image: radial-gradient(rgba(242, 169, 59, 0.08) 1px, transparent 1px),
+                    radial-gradient(rgba(46, 196, 182, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+.bg-ikat-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(46, 196, 182, 0.12) 0%, rgba(11, 43, 46, 0) 70%);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #071e20;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #164246;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F2A93B;
+}
